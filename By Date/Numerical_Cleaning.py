@@ -30,3 +30,4 @@ id_cols = ['Date', 'Code', 'Name']
 num_cols = [c for c in df.columns if c.endswith('_num')]
 df_numeric_only = df[id_cols + num_cols]
 df_numeric_only.to_csv("nse_numeric_only.csv", index=False)
+print(f'This is the file {df_numeric_only.head()}')
