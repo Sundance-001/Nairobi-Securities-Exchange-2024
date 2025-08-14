@@ -25,16 +25,6 @@ class StockAnalyzer:
             'Volume_num': 'mean'
         }).reset_index()
         return grouped
-
-    def pie_chart(self, metric='Volume_num', explode_code=None):
-        """Generate a pie chart for a metric, optionally exploding one stock"""
-        df_sorted = self.grouped.sort_values(metric, ascending=False)
-        explode = [0.1 if c == explode_code else 0 for c in df_sorted['Code']]
-        plt.figure(figsize=(8, 8))
-        plt.pie(df_sorted[metric], labels=df_sorted['Code'], autopct='%1.1f%%', explode=explode)
-        plt.title(f"Distribution of {metric}")
-        plt.show()
-
     def compare_stocks(self, codes):
         """Compare selected stocks via bar charts"""
         codes = [c.strip().upper() for c in codes]
@@ -84,7 +74,7 @@ if __name__ == "__main__":
     codes_input = input("\nEnter stock codes to compare (comma-separated): ").split(",")
     analyzer.compare_stocks(codes_input)
 
-    explode_stock = input("\nEnter stock code to highlight in pie chart: ").strip().upper()
-    analyzer.pie_chart(metric='Volume_num', explode_code=explode_stock)
+    
 
     analyzer.trend_comparison(codes_input)
+    print(  "Analysis complete. Check the plots for results.") 
